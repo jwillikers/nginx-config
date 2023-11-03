@@ -84,13 +84,13 @@ ln --relative --symbolic sites-available/electrs.conf sites-enabled/electrs.conf
 podman run \
   --detach \
   --label "io.containers.autoupdate=registry" \
-  --network podman \
+  --network systemd-podman \
   --name nginx \
   --publish 80:80/tcp \
   --publish 443:443/tcp \
   --rm \
   --volume $PWD:/etc/nginx/:ro,Z \
-  --volume certbot-data:/etc/nginx/ssl:ro,z \
+  --volume certbot-certificates:/etc/nginx/ssl:ro,z \
   docker.io/nginx:latest
 ----
 
